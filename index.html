@@ -11,8 +11,31 @@
       href="style.css"
     />
     <title>DA-Pokedex</title>
+    <link
+      rel="fav icon"
+      href="./assets/img/favicon.png"
+    />
   </head>
   <body>
+    <header class="header">
+      <img
+        src="./assets/img/pokeball-icon.png"
+        alt="pokeball img"
+        class="header-img"
+      />
+      <h1>POKEDEX</h1>
+      <input
+        type="search"
+        id="input-search"
+        class="input-search"
+      />
+    </header>
+
+    <main
+      class="content"
+      id="content"
+      onload="render()"
+    ></main>
     <script src="script.js"></script>
   </body>
 </html>

@@ -23,11 +23,13 @@ body {
   height: 32px;
   border-radius: 4px;
   border: none;
+  padding: 0 8px;
 }
 
 .content {
   display: flex;
-  margin: 32px;
+  justify-content: center;
+  padding: 32px;
   gap: 32px;
   flex-wrap: wrap;
 }
@@ -40,4 +42,17 @@ body {
   width: 200px;
   border: 1px solid black;
   border-radius: 16px;
+  background-color: #4e4e4e;
+}
+
+.type-container {
+  display: flex;
+  gap: 16px;
+}
+
+.types {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: grey;
 }

@@ -1,0 +1,7 @@
+- [ ] searchbar
+  - [ ] search in the entire database
+- [ ] load more btn
+- [ ] modal card
+  - [ ] heigth, weigth
+  - [ ] ability
+  - [ ] stats in lines

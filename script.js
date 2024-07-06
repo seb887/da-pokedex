@@ -1,6 +1,6 @@
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 const pokemonData = [];
-let pokemonCount = 22;
+let pokemonCount = 32;
 
 function init() {
   loadDataFromAPI();
@@ -19,36 +19,27 @@ function render() {
   let content = document.getElementById('content');
 
   for (let i = 0; i < pokemonData.length; i++) {
-    let title = pokemonData[i].name;
-    let img = pokemonData[i].sprites.front_default;
-    let type = pokemonData[i].types;
-    content.innerHTML += renderCardHTML(title, img, type);
+    let id = pokemonData[i].id;
+    let name = pokemonData[i].name;
+    let img = pokemonData[i].sprites.other.home.front_default;
+    let types = pokemonData[i].types;
+
+    console.log(pokemonData[i]);
+
+    const capitalizedName =
+      name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+    content.innerHTML += createCardHTML(id, capitalizedName, img, types);
   }
 }
 
-function renderCardHTML(name, img, type) {
-  const capitalizedName =
-    name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-
-  return `
-    <div class="card">
-        <h2 class="pokemon-title">${capitalizedName}</h2>
-        <img
-            src="${img}"
-            alt="pokemon img"
-            class="pokemon-img"
-        />
-        <div class="type-container" id="type">${renderType(type)}</div>
-    </div>
-  `;
-}
-
-function renderType(type) {
+function renderTypes(types) {
   let labels = '';
-  for (let i = 0; i < type.length; i++) {
-    labels += `<div class="types" id="type-${i + 1}">${
-      type[i].type.name
-    }</div>`;
+
+  for (let i = 0; i < types.length; i++) {
+    labels += `<div class="card-types bg-${types[i].type.name}" id="type-${
+      i + 1
+    }">${types[i].type.name}</div>`;
   }
   return labels;
 }

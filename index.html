@@ -10,6 +10,10 @@
       rel="stylesheet"
       href="style.css"
     />
+    <link
+      rel="stylesheet"
+      href="bgColors.css"
+    />
     <title>DA-Pokedex</title>
     <link
       rel="fav icon"
@@ -18,25 +22,40 @@
   </head>
   <body>
     <header class="header">
-      <img
-        src="./assets/img/pokeball-icon.png"
-        alt="pokeball img"
-        class="header-img"
-      />
-      <h1>POKEDEX</h1>
-      <input
-        type="search"
-        id="input-search"
-        class="input-search"
-        placeholder="Search..."
-      />
+      <h1>
+        <span
+          >P<img src="./assets/icons/pokeball.png" />ké<span class="dex-text"
+            >Dex</span
+          ></span
+        >
+      </h1>
+      <div class="search-container">
+        <input
+          type="search"
+          id="search-input"
+          class="search-input"
+          placeholder="Search your pokemon"
+        />
+        <button class="search-btn">
+          <img
+            src="./assets/icons/magnify.png"
+            alt="magnify icon"
+          />
+        </button>
+      </div>
     </header>
 
-    <main
-      class="content"
-      id="content"
-      onload="render()"
-    ></main>
+    <main></main>
+      <div
+        class="content"
+        id="content"
+        onload="render()"
+      ></div>
+      <div class="button-container">
+        <button class="load-more-btn">Load more ...</button>
+      </div>
+    </main>
     <script src="script.js"></script>
+    <script src="htmlTemplates.js"></script>
   </body>
 </html>

@@ -32,6 +32,20 @@ function renderCard(dataFromAPI) {
   content.innerHTML += createCardHTML(id, capitalizedName, img, types);
 }
 
+function createCardHTML(id, name, img, type) {
+  return `
+      <div class="card" id="pokemon-${id}" onclick="openModal(${id})">
+        <img
+            src="${img}"
+            alt="pokemon img"
+            class="card-img"
+        />
+        <h2 class="pokemon-title">${name}</h2>
+        <div class="card-type-container" id="type">${renderTypes(type)}</div>
+      </div>
+    `;
+}
+
 function renderTypes(types) {
   let labels = '';
 
@@ -55,17 +69,63 @@ async function loadMorePokemons() {
   }
 }
 
-function openModal() {}
+// function openModal() {}
 
-function renderFullscreenCard(pokemonData) {
-  let id = pokemonData.id;
-  let name = pokemonData.name;
-  let img = pokemonData.sprites.other.home.front_default;
-  let types = pokemonData.types;
+// function renderFullscreenCard(i) {
+//   let id = pokemonData[i].id;
+//   let name = pokemonData[i].name;
+//   let img = pokemonData[i].sprites.other.home.front_default;
+//   let types = pokemonData[i].types;
 
-  for (let i = 0; i < pokemonData.length; i++) {
-    modal.innerHTML += createFullscreenCardHTML(id, name, img, types);
+//   modal.innerHTML += createFullscreenCardHTML(id, name, img, types);
+// }
+
+// renderFullscreenCard(2);
+
+function openModal(id) {
+  const pokemon = pokemonData.find((pokemon) => pokemon.id === id);
+
+  if (pokemon) {
+    const name = pokemon.name;
+    const img = pokemon.sprites.other.home.front_default;
+    const types = pokemon.types;
+    const height = pokemon.height;
+    const weight = pokemon.weight;
+
+    modal.innerHTML = createFullscreenCardHTML(
+      name,
+      img,
+      types,
+      height,
+      weight
+    );
+    modal.style.display = 'flex';
   }
+}
+
+function createFullscreenCardHTML(name, img, types, height, weight) {
+  const capitalizedName =
+    name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+  return `
+    <div class="modal-card">
+      <img src="${img}" alt="${capitalizedName} img" />
+      <h2>${capitalizedName}</h2>
+      <div class="card-type-container" id="type">${renderTypes(types)}</div>
+      <div class="body-stats-container">
+        <div class="body-stats" id="height"><b>Height: </b>${
+          height / 10
+        } m</div>
+        <div class="body-stats" id="weight"><b>Weight: </b>${
+          weight / 10
+        } kg</div>
+      </div>
+    </div>
+  `;
+}
+
+function closeModal() {
+  modal.style.display = 'none';
 }
 
 init();

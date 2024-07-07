@@ -31,10 +31,11 @@
       </h1>
       <div class="search-container">
         <input
-          type="search"
+          type="text"
           id="search-input"
           class="search-input"
           placeholder="Search your pokemon"
+          onchange="searchPokemon()"
         />
         <button class="search-btn">
           <img
@@ -45,16 +46,28 @@
       </div>
     </header>
 
-    <main></main>
-      <div
-        class="content"
-        id="content"
-        onload="render()"
-      ></div>
-      <div class="button-container">
-        <button class="load-more-btn">Load more ...</button>
-      </div>
+    <main>
+      <section>
+        <div
+          class="content"
+          id="content"
+          onload="render()"
+        ></div>
+        <div class="button-container">
+          <button
+            class="load-more-btn"
+            onclick="loadMorePokemons()"
+          >
+            Load more
+          </button>
+        </div>
+      </section>
+      <section
+        class="modal"
+        id="modal"
+      ></section>
     </main>
+
     <script src="script.js"></script>
     <script src="htmlTemplates.js"></script>
   </body>

@@ -1,6 +1,9 @@
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 const pokemonData = [];
-let pokemonCount = 32;
+let pokemonCount = 21;
+const searchInputValue = document.getElementById('search-input').value;
+const content = document.getElementById('content');
+const modal = document.getElementById('modal');
 
 function init() {
   loadDataFromAPI();
@@ -9,28 +12,24 @@ function init() {
 async function loadDataFromAPI() {
   for (let i = 1; i < pokemonCount; i++) {
     let response = await fetch(BASE_URL + i);
-    let responseToJson = await response.json();
-    pokemonData.push(responseToJson);
+    let dataFromAPI = await response.json();
+    pokemonData.push(dataFromAPI);
+    renderCard(dataFromAPI);
   }
-  render();
 }
 
-function render() {
-  let content = document.getElementById('content');
+function renderCard(dataFromAPI) {
+  let id = dataFromAPI.id;
+  let name = dataFromAPI.name;
+  let img = dataFromAPI.sprites.other.home.front_default;
+  let types = dataFromAPI.types;
 
-  for (let i = 0; i < pokemonData.length; i++) {
-    let id = pokemonData[i].id;
-    let name = pokemonData[i].name;
-    let img = pokemonData[i].sprites.other.home.front_default;
-    let types = pokemonData[i].types;
+  // console.log(dataFromAPI);
 
-    console.log(pokemonData[i]);
+  const capitalizedName =
+    name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
-    const capitalizedName =
-      name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-
-    content.innerHTML += createCardHTML(id, capitalizedName, img, types);
-  }
+  content.innerHTML += createCardHTML(id, capitalizedName, img, types);
 }
 
 function renderTypes(types) {
@@ -44,10 +43,29 @@ function renderTypes(types) {
   return labels;
 }
 
-// function getType(type) {
-//   for (let i = 0; i < type.length; i++) {
-//     return type[i];
-//   }
-// }
+async function loadMorePokemons() {
+  const currentPokemonCount = pokemonCount;
+  pokemonCount += 20;
+
+  for (let i = currentPokemonCount; i < pokemonCount; i++) {
+    let response = await fetch(BASE_URL + i);
+    let dataFromAPI = await response.json();
+    pokemonData.push(dataFromAPI);
+    renderCard(dataFromAPI);
+  }
+}
+
+function openModal() {}
+
+function renderFullscreenCard(pokemonData) {
+  let id = pokemonData.id;
+  let name = pokemonData.name;
+  let img = pokemonData.sprites.other.home.front_default;
+  let types = pokemonData.types;
+
+  for (let i = 0; i < pokemonData.length; i++) {
+    modal.innerHTML += createFullscreenCardHTML(id, name, img, types);
+  }
+}
 
 init();

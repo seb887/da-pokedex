@@ -1,8 +1,10 @@
 - [ ] searchbar
   - [ ] search in the entire database
 - [x] load more btn
-- [ ] modal card
-  - [ ] heigth, weigth
-  - [ ] ability
-  - [ ] stats in lines
+- [x] modal card
+  - [x] heigth, weigth
+  - [x] ability
+  - [x] stats in lines
+  - [ ] closing btn
+  - [ ] change pokemon btns
 - [ ] loading spinner

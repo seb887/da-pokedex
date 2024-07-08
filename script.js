@@ -21,7 +21,7 @@ async function loadDataFromAPI() {
 function renderCard(dataFromAPI) {
   let id = dataFromAPI.id;
   let name = dataFromAPI.name;
-  let img = dataFromAPI.sprites.other.home.front_default;
+  let img = dataFromAPI.sprites.other['official-artwork'].front_default;
   let types = dataFromAPI.types;
 
   // console.log(dataFromAPI);
@@ -69,48 +69,38 @@ async function loadMorePokemons() {
   }
 }
 
-// function openModal() {}
-
-// function renderFullscreenCard(i) {
-//   let id = pokemonData[i].id;
-//   let name = pokemonData[i].name;
-//   let img = pokemonData[i].sprites.other.home.front_default;
-//   let types = pokemonData[i].types;
-
-//   modal.innerHTML += createFullscreenCardHTML(id, name, img, types);
-// }
-
-// renderFullscreenCard(2);
-
 function openModal(id) {
   const pokemon = pokemonData.find((pokemon) => pokemon.id === id);
 
   if (pokemon) {
     const name = pokemon.name;
-    const img = pokemon.sprites.other.home.front_default;
+    const img = pokemon.sprites.other['official-artwork'].front_default;
     const types = pokemon.types;
     const height = pokemon.height;
     const weight = pokemon.weight;
+    const stats = pokemon.stats;
 
     modal.innerHTML = createFullscreenCardHTML(
       name,
       img,
       types,
       height,
-      weight
+      weight,
+      stats
     );
     modal.style.display = 'flex';
   }
 }
 
-function createFullscreenCardHTML(name, img, types, height, weight) {
+function createFullscreenCardHTML(name, img, types, height, weight, stats) {
   const capitalizedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
   return `
     <div class="modal-card">
-      <img src="${img}" alt="${capitalizedName} img" />
+      <button class="card-close-btn" onclick="closeModal()">x</button>
       <h2>${capitalizedName}</h2>
+      <img src="${img}" alt="${capitalizedName} img" />
       <div class="card-type-container" id="type">${renderTypes(types)}</div>
       <div class="body-stats-container">
         <div class="body-stats" id="height"><b>Height: </b>${
@@ -120,12 +110,50 @@ function createFullscreenCardHTML(name, img, types, height, weight) {
           weight / 10
         } kg</div>
       </div>
+      <div class="stats-container">
+        <h3>Stats</h3>
+        <div class="stats" id="stats-container">${renderStats(stats)}</div>
+      </div>
     </div>
   `;
 }
 
 function closeModal() {
   modal.style.display = 'none';
+}
+
+function renderStats(stats) {
+  let statValues = '';
+
+  for (let i = 0; i < stats.length; i++) {
+    statValues += `
+      <div class="stat-container" id="stat-${i + 1}">
+        <div class="stat-name" id="stat-name-${stats[i].stat.name}">
+          <b>${setShortStatName(stats[i].stat.name)}</b></div>
+        <div class="stat-value" id="stat-value-${stats[i].stat.name}">${
+      stats[i].base_stat
+    }</div>
+      </div>
+    `;
+  }
+  return statValues;
+}
+
+function setShortStatName(name) {
+  switch (name) {
+    case 'hp':
+      return 'HP';
+    case 'attack':
+      return 'ATK';
+    case 'defense':
+      return 'DEF';
+    case 'special-attack':
+      return 'SpA';
+    case 'special-defense':
+      return 'SpD';
+    case 'speed':
+      return 'SPD';
+  }
 }
 
 init();

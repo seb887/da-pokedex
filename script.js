@@ -1,12 +1,19 @@
+//VARIABLES
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 const pokemonData = [];
 let pokemonCount = 21;
-const searchInputValue = document.getElementById('search-input').value;
+const searchInput = document.getElementById('search-input');
+const clearInputBtn = document.getElementById('search-clear-btn');
 const content = document.getElementById('content');
 const modal = document.getElementById('modal');
 
+// FUNCTIONS
 function init() {
+  searchInput.value = '';
+  content.innerHTML = '';
   loadDataFromAPI();
+  controlInputClearBtn();
+  filteredPokemonData.length = 0;
 }
 
 async function loadDataFromAPI() {
@@ -155,5 +162,43 @@ function setShortStatName(name) {
       return 'SPD';
   }
 }
+
+function searchPokemon() {
+  content.innerHTML = '';
+
+  controlInputClearBtn();
+
+  const filteredPokemonData = pokemonData.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(checkInputText())
+  );
+
+  if (filteredPokemonData.length > 0) {
+    filteredPokemonData.forEach((pokemon) => renderCard(pokemon));
+  } else {
+    content.innerHTML = '<p>No Pokémon found</p>';
+  }
+}
+
+function checkInputText() {
+  let inputText = '';
+
+  if (searchInput.value.toLowerCase().length >= 3) {
+    inputText = searchInput.value.toLowerCase();
+  }
+
+  return inputText;
+}
+
+function controlInputClearBtn() {
+  if (searchInput.value.length > 0) {
+    clearInputBtn.style.display = 'flex';
+  } else {
+    clearInputBtn.style.display = 'none';
+  }
+}
+
+// EVENTS
+searchInput.addEventListener('input', searchPokemon);
+clearInputBtn.addEventListener('click', init);
 
 init();

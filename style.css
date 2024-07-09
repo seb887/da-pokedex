@@ -96,23 +96,24 @@ header span img {
   outline: none;
 }
 
-.search-btn {
-  display: flex;
+.search-clear-btn {
+  display: none;
   justify-content: center;
   align-items: center;
-  width: 32px;
-  height: 32px;
-  background-color: #e8514e;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
   border: none;
   border-radius: 8px;
+  filter: invert();
   cursor: pointer;
 }
 
-.search-btn img {
+/* .search-clear-btn {
   width: 24px;
   height: 24px;
   filter: invert();
-}
+} */
 
 .content {
   display: flex;
@@ -141,6 +142,10 @@ header span img {
 .card-img {
   margin-top: -124px;
   width: 200px;
+}
+
+.card:hover .card-img {
+  scale: 1.05;
 }
 
 .type-container {
@@ -206,17 +211,17 @@ header span img {
 }
 
 /* .modal-card button {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  padding: 0;
-  width: 100%;
-  height: 32px;
-  background-color: transparent;
-  border: none;
-  font-size: 40px;
-  cursor: pointer;
-} */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+  } */
 
 .modal-card h2 {
   font-size: 56px;

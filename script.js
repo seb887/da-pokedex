@@ -4,6 +4,7 @@ const pokemonData = [];
 let pokemonCount = 21;
 const searchInput = document.getElementById('search-input');
 const clearInputBtn = document.getElementById('search-clear-btn');
+const loadMoreBtn = document.getElementById('load-more-btn');
 const content = document.getElementById('content');
 const modal = document.getElementById('modal');
 
@@ -173,6 +174,7 @@ function searchPokemon() {
   );
 
   if (filteredPokemonData.length > 0) {
+    loadMoreBtn.style.display = 'none';
     filteredPokemonData.forEach((pokemon) => renderCard(pokemon));
   } else {
     content.innerHTML = '<p>No Pokémon found</p>';
@@ -194,6 +196,7 @@ function controlInputClearBtn() {
     clearInputBtn.style.display = 'flex';
   } else {
     clearInputBtn.style.display = 'none';
+    loadMoreBtn.style.display = 'flex';
   }
 }
 

@@ -193,6 +193,17 @@ header span img {
   z-index: 999;
 }
 
+.modal-btn-container {
+  margin: 32px;
+  width: 80px;
+}
+
+.chevron-icons {
+  width: 80px;
+  filter: invert();
+  cursor: pointer;
+}
+
 .modal-card {
   display: flex;
   flex-direction: column;

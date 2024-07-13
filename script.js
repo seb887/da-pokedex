@@ -14,7 +14,6 @@ function init() {
   content.innerHTML = '';
   loadDataFromAPI();
   controlInputClearBtn();
-  filteredPokemonData.length = 0;
 }
 
 async function loadDataFromAPI() {
@@ -24,6 +23,7 @@ async function loadDataFromAPI() {
     pokemonData.push(dataFromAPI);
     renderCard(dataFromAPI);
   }
+  console.log(pokemonData.length);
 }
 
 function renderCard(dataFromAPI) {
@@ -89,6 +89,7 @@ function openModal(id) {
     const stats = pokemon.stats;
 
     modal.innerHTML = createFullscreenCardHTML(
+      id,
       name,
       img,
       types,
@@ -97,37 +98,66 @@ function openModal(id) {
       stats
     );
     modal.style.display = 'flex';
+    checkModalBtns(id);
   }
 }
 
-function createFullscreenCardHTML(name, img, types, height, weight, stats) {
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function createFullscreenCardHTML(id, name, img, types, height, weight, stats) {
   const capitalizedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
+  console.log(id);
+
   return `
-    <div class="modal-card">
-      <button class="card-close-btn" onclick="closeModal()">x</button>
-      <h2>${capitalizedName}</h2>
-      <img src="${img}" alt="${capitalizedName} img" />
-      <div class="card-type-container" id="type">${renderTypes(types)}</div>
-      <div class="body-stats-container">
+      <div class="modal-btn-container" onclick="event.stopPropagation()">
+        <img src="./assets/icons/chevron-left.png" alt="chevron-left icon" class="chevron-icons" id="previous-pokemon-btn" onclick="previousPokemon(${id})" />
+      </div>
+      <div class="modal-card" onclick="event.stopPropagation()">
+        <h2>${capitalizedName}</h2>
+        <img src="${img}" alt="${capitalizedName} img"/>
+        <div class="card-type-container" id="type">${renderTypes(types)}</div>
+        <div class="body-stats-container">
         <div class="body-stats" id="height"><b>Height: </b>${
           height / 10
         } m</div>
         <div class="body-stats" id="weight"><b>Weight: </b>${
           weight / 10
         } kg</div>
+        </div>
+        <div class="stats-container">
+          <h3>Stats</h3>
+          <div class="stats" id="stats-container">${renderStats(stats)}</div>
+        </div>
       </div>
-      <div class="stats-container">
-        <h3>Stats</h3>
-        <div class="stats" id="stats-container">${renderStats(stats)}</div>
+      <div class="modal-btn-container" onclick="event.stopPropagation()">
+        <img src="./assets/icons/chevron-right.png" alt="chevron-right icon" class="chevron-icons" id="next-pokemon-btn" onclick="nextPokemon(${id})" />
       </div>
-    </div>
   `;
 }
 
-function closeModal() {
-  modal.style.display = 'none';
+function nextPokemon(id) {
+  openModal(id + 1);
+}
+
+function previousPokemon(id) {
+  openModal(id - 1);
+}
+
+function checkModalBtns(id) {
+  const previousBtn = document.getElementById('previous-pokemon-btn');
+  const nextBtn = document.getElementById('next-pokemon-btn');
+
+  if (id == 1) {
+    previousBtn.style.display = 'none';
+  }
+
+  if (id === pokemonData.length) {
+    nextBtn.style.display = 'none';
+  }
 }
 
 function renderStats(stats) {
@@ -174,7 +204,6 @@ function searchPokemon() {
   );
 
   if (filteredPokemonData.length > 0) {
-    loadMoreBtn.style.display = 'none';
     filteredPokemonData.forEach((pokemon) => renderCard(pokemon));
   } else {
     content.innerHTML = '<p>No Pokémon found</p>';
@@ -185,7 +214,10 @@ function checkInputText() {
   let inputText = '';
 
   if (searchInput.value.toLowerCase().length >= 3) {
+    loadMoreBtn.style.display = 'none';
     inputText = searchInput.value.toLowerCase();
+  } else {
+    loadMoreBtn.style.display = 'flex';
   }
 
   return inputText;
@@ -196,7 +228,6 @@ function controlInputClearBtn() {
     clearInputBtn.style.display = 'flex';
   } else {
     clearInputBtn.style.display = 'none';
-    loadMoreBtn.style.display = 'flex';
   }
 }
 

@@ -4,6 +4,7 @@
   - [ ] clear btn -> clear filteredArr
   - [ ] clear input with backspace and length = 0 -> init()
 - [x] load more btn
+- [ ] disable modal scrollbar
 - [x] modal card
   - [x] heigth, weigth
   - [x] ability
@@ -18,17 +19,17 @@ Bitte erfülle alle Punkte auf dieser Liste, bevor du das Projekt einreichst. So
 
 ## Allgemein:
 
-- [ ] Es soll eine bestimmte Anzahl an Pokemon Karten direkt gerendert werden. Am besten zwischen 20 und 40. Aktuell gibt es über 1000 Pokemon. Mindestens die ersten 151 sollen dargestellt werden.
-- [ ] Unten gibt es einen Button, um weitere Pokemon zu laden.
+- [x] Es soll eine bestimmte Anzahl an Pokemon Karten direkt gerendert werden. Am besten zwischen 20 und 40. Aktuell gibt es über 1000 Pokemon. Mindestens die ersten 151 sollen dargestellt werden.
+- [x] Unten gibt es einen Button, um weitere Pokemon zu laden.
 - [ ] Sichtbar soll auf jeder kleinen Pokemon Karte sein:
-  - [ ] Name
-  - [ ] Typ/en
-  - [ ] Bild des Pokemons
+  - [x] Name
+  - [x] Typ/en
+  - [x] Bild des Pokemons
   - [ ] Hintergrundfarbe passend zum Typ
-  - [ ] ID (optional)
-- [ ] Es sollte einen Hover-Effekt auf der kleinen Pokemon Karte geben:
-  - [ ] cursor-pointer
-  - [ ] z.B. Pokemon erscheint größer etc. (optional)
+  - [x] ID (optional)
+- [x] Es sollte einen Hover-Effekt auf der kleinen Pokemon Karte geben:
+  - [x] cursor-pointer
+  - [x] z.B. Pokemon erscheint größer etc. (optional)
 
 ## Große Ansicht:
 
@@ -56,8 +57,8 @@ Bitte erfülle alle Punkte auf dieser Liste, bevor du das Projekt einreichst. So
 - [x] Allgemein kannst du bei diesem Projekt auch gerne etwas kreativ werden, die Bilder hier dienen als Beispiele die gut funktionieren, jedoch kann man mit ein paar Kniffen sicher auch einen sehr schönen individuellen Pokedex erstellen.
 - [x] Favicon
 - [x] Dokumenten Titel
-- [ ] Header mit:
+- [x] Header mit:
   - [x] Logo
   - [x] Titel
-  - [ ] Suchleiste (man soll mindestens 3 Buchstaben eingeben bevor gesucht werden kann, wenn diese Buchstaben Teil des Namens eines Pokemons sind, sollten diese Pokemon angezeigt werden. Es sollte eine begrenzte Anzahl an Pokemon mit den Suchkriterien angezeigt werden, z.B. 10 stück)
-- [ ] Footer (optional)
+  - [x] Suchleiste (man soll mindestens 3 Buchstaben eingeben bevor gesucht werden kann, wenn diese Buchstaben Teil des Namens eines Pokemons sind, sollten diese Pokemon angezeigt werden. Es sollte eine begrenzte Anzahl an Pokemon mit den Suchkriterien angezeigt werden, z.B. 10 stück)
+- [x] Footer (optional)

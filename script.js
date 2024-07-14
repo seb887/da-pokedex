@@ -88,7 +88,7 @@ function openModal(id) {
     const weight = pokemon.weight;
     const stats = pokemon.stats;
 
-    modal.innerHTML = createFullscreenCardHTML(
+    modal.innerHTML = createFullscreenCard(
       id,
       name,
       img,
@@ -106,11 +106,11 @@ function closeModal() {
   modal.style.display = 'none';
 }
 
-function createFullscreenCardHTML(id, name, img, types, height, weight, stats) {
+function createFullscreenCard(id, name, img, types, height, weight, stats) {
   const capitalizedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
-  console.log(id);
+  console.log(types[1]);
 
   return `
       <div class="modal-btn-container" onclick="event.stopPropagation()">
@@ -119,7 +119,9 @@ function createFullscreenCardHTML(id, name, img, types, height, weight, stats) {
       <div class="modal-card" onclick="event.stopPropagation()">
         <h2>${capitalizedName}</h2>
         <img src="${img}" alt="${capitalizedName} img"/>
-        <div class="card-type-container" id="type">${renderTypes(types)}</div>
+        <div class="modal-card-type-container" id="type">${renderTypes(
+          types
+        )}</div>
         <div class="body-stats-container">
         <div class="body-stats" id="height"><b>Height: </b>${
           height / 10

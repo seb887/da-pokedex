@@ -1,3 +1,18 @@
+@font-face {
+  font-family: FiraMono-Medium;
+  src: url('./assets/fonts/Fira_Mono/FiraMono-Medium.ttf');
+}
+
+@font-face {
+  font-family: Roboto-Regular;
+  src: url('./assets/fonts/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: Pacifico-Regular;
+  src: url('./assets/fonts/Pacifico/Pacifico-Regular.ttf');
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -8,6 +23,7 @@ body {
   margin: 0 auto;
   scrollbar-width: 12px;
   scrollbar-color: #e8514e;
+  font-family: Roboto-Regular;
 }
 
 /* width */
@@ -174,10 +190,14 @@ header span img {
 .load-more-btn {
   padding: 12px 16px;
   background-color: #e8514e;
-  border: 2px solid lightgray;
+  border: none;
   border-radius: 8px;
   font-size: 24px;
   cursor: pointer;
+}
+
+.load-more-btn:hover {
+  box-shadow: 0 0 8px 4px gray;
 }
 
 .modal {
@@ -209,8 +229,9 @@ header span img {
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-top: 30px;
-  margin-bottom: 48px;
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 42px;
 }
 
 .modal-btn-container {
@@ -218,6 +239,7 @@ header span img {
   justify-content: center;
   align-items: center;
   width: 80px;
+  margin-bottom: 40px;
 }
 
 .arrow-icons {
@@ -242,7 +264,7 @@ header span img {
 }
 
 .modal-card-img {
-  width: 300px;
+  width: 250px;
 }
 
 .modal-card-type-container {
@@ -255,7 +277,7 @@ header span img {
   justify-content: space-around;
   width: 100%;
   margin-top: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .stats-container {
@@ -264,7 +286,6 @@ header span img {
   align-items: center;
   width: 100%;
   padding: 24px;
-  border-top: 1px solid black;
 }
 
 .stats-container h3 {
@@ -289,6 +310,11 @@ header span img {
   border-radius: 24px;
 }
 
+canvas {
+  border: 1px solid #000;
+  border-radius: 8px;
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -305,4 +331,14 @@ header span img {
   header span img {
     width: 32px;
   }
+}
+
+.test {
+  color: rgba(255, 0, 0, 0.3);
+  color: rgba(255, 165, 0, 0.3);
+  color: rgba(0, 128, 0, 0.3);
+  color: rgba(255, 255, 0, 0.3);
+  color: rgba(0, 0, 255, 0.3);
+  color: rgba(0, 0, 0, 0.3);
+  color: rgba(128, 0, 128, 0.3);
 }

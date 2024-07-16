@@ -4,7 +4,7 @@
   - [x] clear btn -> clear filteredArr
   - [x] clear input with backspace and length = 0 -> init()
 - [x] load more btn
-- [ ] disable modal scrollbar
+- [x] disable modal scrollbar
 - [x] modal card
   - [x] heigth, weigth
   - [x] ability
@@ -12,6 +12,7 @@
   - [x] closing btn
   - [x] change pokemon btns
 - [ ] loading spinner
+- [ ] modal close btn for small displays < 500px
 
 # Checkliste
 

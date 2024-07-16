@@ -1,4 +1,4 @@
-//VARIABLES
+//letIABLES
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 const pokemonData = [];
 let pokemonCount = 21;
@@ -101,6 +101,7 @@ function openModal(id) {
     );
     modal.style.display = 'flex';
     checkModalBtns(id);
+    createChart(stats);
   }
 }
 
@@ -132,19 +133,14 @@ function createFullscreenCard(id, name, img, types, height, weight, stats) {
           types
         )}</div>
         <div class="body-stats-container">
-        <div class="body-stats" id="height"><b>Height: </b>${
-          height / 10
-        } m</div>
-        <div class="body-stats" id="weight"><b>Weight: </b>${
-          weight / 10
-        } kg</div>
+          <div class="body-stats" id="height"><b>Height: </b>${
+            height / 10
+          } m</div>
+          <div class="body-stats" id="weight"><b>Weight: </b>${
+            weight / 10
+          } kg</div>
         </div>
-        <div class="stats-container">
-          <h3>Stats</h3>
-          <div class="stats" id="stats-container">${renderStats(stats)}</div>
-        </div>
-          
-          
+        <canvas id="myChart" width="450" height="260"></canvas>
       </div>
   `;
 }
@@ -239,6 +235,135 @@ function controlInputClearBtn() {
   } else {
     clearInputBtn.style.display = 'none';
   }
+}
+
+// CANVAS
+function createChart(stats) {
+  const canvas = document.getElementById('myChart');
+  const ctx = canvas.getContext('2d');
+
+  const data = [
+    {
+      label: 'HP',
+      value: stats[0].base_stat,
+      color: 'rgba(255, 0, 0, 0.3)',
+      borderColor: 'red',
+    },
+    {
+      label: 'ATK',
+      value: stats[1].base_stat,
+      color: 'rgba(255, 165, 0, 0.3)',
+      borderColor: 'orange',
+    },
+    {
+      label: 'DEF',
+      value: stats[2].base_stat,
+      color: 'rgba(0, 128, 0, 0.3)',
+      borderColor: 'green',
+    },
+    {
+      label: 'SpA',
+      value: stats[3].base_stat,
+      color: 'rgba(128, 0, 128, 0.3)',
+      borderColor: 'purple ',
+    },
+    {
+      label: 'SpD',
+      value: stats[4].base_stat,
+      color: 'rgba(0, 0, 255, 0.3)',
+      borderColor: 'blue',
+    },
+    {
+      label: 'SPD',
+      value: stats[5].base_stat,
+      color: 'rgba(0, 0, 0, 0.3)',
+      borderColor: 'black',
+    },
+  ];
+
+  const chartWidth = canvas.width;
+  const chartHeight = canvas.height;
+  const barHeight = 24;
+  const margin = 16;
+  const labelWidth = 50;
+  const maxValue = 120;
+  // const maxValue = Math.max(...data.map((d) => d.value));
+  const borderRadius = 4;
+
+  ctx.font = '14px Roboto-Regular';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+
+  function drawRoundedRectRight(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x, y + height);
+    ctx.lineTo(x, y);
+    ctx.closePath();
+  }
+
+  ctx.strokeStyle = 'black';
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  ctx.moveTo(labelWidth + margin, margin / 2);
+  ctx.lineTo(labelWidth + margin, chartHeight - margin / 2);
+  ctx.stroke();
+
+  data.forEach((item, index) => {
+    const y = index * (barHeight + margin) + margin * 2;
+    const barWidth =
+      (item.value / maxValue) * (chartWidth - labelWidth - margin * 4);
+
+    // Draw the bar
+    ctx.fillStyle = data[index].color;
+    drawRoundedRectRight(
+      ctx,
+      labelWidth + margin,
+      y - barHeight / 2,
+      barWidth,
+      barHeight,
+      borderRadius
+    );
+    ctx.fill();
+
+    ctx.strokeStyle = data[index].borderColor; // Color of the border
+    ctx.lineWidth = 1; // Width of the border
+    ctx.beginPath();
+    ctx.moveTo(labelWidth + margin, y - barHeight / 2);
+    ctx.lineTo(
+      labelWidth + margin + barWidth - borderRadius,
+      y - barHeight / 2
+    );
+    ctx.quadraticCurveTo(
+      labelWidth + margin + barWidth,
+      y - barHeight / 2,
+      labelWidth + margin + barWidth,
+      y - barHeight / 2 + borderRadius
+    );
+    ctx.lineTo(
+      labelWidth + margin + barWidth,
+      y + barHeight / 2 - borderRadius
+    );
+    ctx.quadraticCurveTo(
+      labelWidth + margin + barWidth,
+      y + barHeight / 2,
+      labelWidth + margin + barWidth - borderRadius,
+      y + barHeight / 2
+    );
+    ctx.lineTo(labelWidth + margin, y + barHeight / 2);
+    ctx.stroke();
+
+    // Draw the label
+    ctx.fillStyle = '#000';
+    ctx.fillText(item.label, margin, y);
+
+    // Draw the value
+    ctx.fillText(item.value, labelWidth + margin + barWidth + 10, y);
+  });
 }
 
 // EVENTS

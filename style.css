@@ -189,19 +189,9 @@ header span img {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
   z-index: 999;
-}
-
-.modal-btn-container {
-  margin: 32px;
-  width: 80px;
-}
-
-.chevron-icons {
-  width: 80px;
-  filter: invert();
-  cursor: pointer;
 }
 
 .modal-card {
@@ -210,11 +200,34 @@ header span img {
   align-items: center;
   padding: 24px;
   width: 500px;
-  /* height: 750px; */
+  min-width: 500px;
   background-color: white;
-  /* border: 2px solid lightgray; */
   border-radius: 16px;
-  /* box-shadow: 0 0 8px 4px lightgray; */
+}
+
+.modal-card-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: 30px;
+  margin-bottom: 48px;
+}
+
+.modal-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+}
+
+.arrow-icons {
+  width: 80px;
+  /* filter: invert(); */
+  cursor: pointer;
+}
+
+.arrow-icons:hover {
+  scale: 1.1;
 }
 
 .card-close-btn {
@@ -228,10 +241,8 @@ header span img {
   margin: 0;
 }
 
-.modal-card img {
+.modal-card-img {
   width: 300px;
-  margin-top: 30px;
-  margin-bottom: 48px;
 }
 
 .modal-card-type-container {
@@ -276,4 +287,22 @@ header span img {
   background-color: rgba(230, 230, 230, 0.4);
   width: 48px;
   border-radius: 24px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 24px;
+    gap: 24;
+  }
+}
+
+@media (max-width: 450px) {
+  h1 {
+    font-size: 56px;
+  }
+
+  header span img {
+    width: 32px;
+  }
 }

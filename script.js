@@ -23,7 +23,7 @@ async function loadDataFromAPI() {
     pokemonData.push(dataFromAPI);
     renderCard(dataFromAPI);
   }
-  console.log(pokemonData.length);
+  console.log('pokemonCount: ', pokemonCount);
 }
 
 function renderCard(dataFromAPI) {
@@ -31,8 +31,6 @@ function renderCard(dataFromAPI) {
   let name = dataFromAPI.name;
   let img = dataFromAPI.sprites.other['official-artwork'].front_default;
   let types = dataFromAPI.types;
-
-  // console.log(dataFromAPI);
 
   const capitalizedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
@@ -75,10 +73,14 @@ async function loadMorePokemons() {
     pokemonData.push(dataFromAPI);
     renderCard(dataFromAPI);
   }
+  console.log('pokemonCount: ', pokemonCount);
 }
 
 function openModal(id) {
   const pokemon = pokemonData.find((pokemon) => pokemon.id === id);
+  const body = document.querySelector('body');
+
+  body.style.overflow = 'hidden';
 
   if (pokemon) {
     const name = pokemon.name;
@@ -103,6 +105,9 @@ function openModal(id) {
 }
 
 function closeModal() {
+  const body = document.querySelector('body');
+
+  body.style.overflow = 'visible';
   modal.style.display = 'none';
 }
 
@@ -110,15 +115,19 @@ function createFullscreenCard(id, name, img, types, height, weight, stats) {
   const capitalizedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
-  console.log(types[1]);
-
   return `
-      <div class="modal-btn-container" onclick="event.stopPropagation()">
-        <img src="./assets/icons/chevron-left.png" alt="chevron-left icon" class="chevron-icons" id="previous-pokemon-btn" onclick="previousPokemon(${id})" />
-      </div>
+      
       <div class="modal-card" onclick="event.stopPropagation()">
         <h2>${capitalizedName}</h2>
-        <img src="${img}" alt="${capitalizedName} img"/>
+        <div class="modal-card-buttons">
+          <div class="modal-btn-container" onclick="event.stopPropagation()">
+              <img src="./assets/icons/back.png" alt="chevron-left icon" class="arrow-icons" id="previous-pokemon-btn" onclick="previousPokemon(${id})" />
+          </div>
+          <img src="${img}" alt="${capitalizedName} img" class="modal-card-img"/>
+          <div class="modal-btn-container" onclick="event.stopPropagation()">
+              <img src="./assets/icons/forward.png" alt="chevron-right icon" class="arrow-icons" id="next-pokemon-btn" onclick="nextPokemon(${id})" />
+          </div>
+        </div>
         <div class="modal-card-type-container" id="type">${renderTypes(
           types
         )}</div>
@@ -134,9 +143,8 @@ function createFullscreenCard(id, name, img, types, height, weight, stats) {
           <h3>Stats</h3>
           <div class="stats" id="stats-container">${renderStats(stats)}</div>
         </div>
-      </div>
-      <div class="modal-btn-container" onclick="event.stopPropagation()">
-        <img src="./assets/icons/chevron-right.png" alt="chevron-right icon" class="chevron-icons" id="next-pokemon-btn" onclick="nextPokemon(${id})" />
+          
+          
       </div>
   `;
 }

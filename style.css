@@ -63,6 +63,11 @@ h2 {
   margin: 24px 0;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -146,7 +151,6 @@ header span img {
   align-items: center;
   padding: 24px;
   width: 300px;
-  border: 2px solid lightgray;
   border-radius: 16px;
   box-shadow: 0 0 8px 4px lightgray;
   cursor: pointer;
@@ -215,6 +219,7 @@ header span img {
 }
 
 .modal-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -223,6 +228,21 @@ header span img {
   min-width: 500px;
   background-color: white;
   border-radius: 16px;
+}
+
+.close-modal-btn {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  /* filter: invert(); */
+}
+
+.close-modal-btn:hover {
+  scale: 1.1;
 }
 
 .modal-card-buttons {
@@ -250,12 +270,6 @@ header span img {
 
 .arrow-icons:hover {
   scale: 1.1;
-}
-
-.card-close-btn {
-  position: fixed;
-  top: 0;
-  right: 0;
 }
 
 .modal-card h2 {
@@ -315,6 +329,12 @@ canvas {
   border-radius: 8px;
 }
 
+@media (max-width: 992px) {
+  .close-modal-btn {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -331,14 +351,4 @@ canvas {
   header span img {
     width: 32px;
   }
-}
-
-.test {
-  color: rgba(255, 0, 0, 0.3);
-  color: rgba(255, 165, 0, 0.3);
-  color: rgba(0, 128, 0, 0.3);
-  color: rgba(255, 255, 0, 0.3);
-  color: rgba(0, 0, 255, 0.3);
-  color: rgba(0, 0, 0, 0.3);
-  color: rgba(128, 0, 128, 0.3);
 }

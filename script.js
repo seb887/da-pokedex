@@ -5,6 +5,7 @@ let pokemonCount = 21;
 const searchInput = document.getElementById('search-input');
 const clearInputBtn = document.getElementById('search-clear-btn');
 const loadMoreBtn = document.getElementById('load-more-btn');
+const body = document.querySelector('body');
 const content = document.getElementById('content');
 const modal = document.getElementById('modal');
 
@@ -112,13 +113,22 @@ function closeModal() {
   modal.style.display = 'none';
 }
 
+function closeModalESC(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+}
+
 function createFullscreenCard(id, name, img, types, height, weight, stats) {
   const capitalizedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
   return `
-      
+
       <div class="modal-card" onclick="event.stopPropagation()">
+        <button>
+          <img src="./assets/icons/x-icon.png" alt="x-icon" class="close-modal-btn" id="close-modal-btn" onclick="closeModal()"/>
+        </button>
         <h2>${capitalizedName}</h2>
         <div class="modal-card-buttons">
           <div class="modal-btn-container" onclick="event.stopPropagation()">
@@ -142,7 +152,8 @@ function createFullscreenCard(id, name, img, types, height, weight, stats) {
         </div>
         <canvas id="myChart" width="450" height="260"></canvas>
       </div>
-  `;
+      `;
+  //
 }
 
 function nextPokemon(id) {
@@ -237,7 +248,7 @@ function controlInputClearBtn() {
   }
 }
 
-// CANVAS
+// CANVAS chart
 function createChart(stats) {
   const canvas = document.getElementById('myChart');
   const ctx = canvas.getContext('2d');
@@ -369,5 +380,6 @@ function createChart(stats) {
 // EVENTS
 searchInput.addEventListener('input', searchPokemon);
 clearInputBtn.addEventListener('click', init);
+body.onkeydown = (event) => closeModalESC(event);
 
 init();

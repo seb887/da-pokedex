@@ -12,7 +12,9 @@
   - [x] closing btn
   - [x] change pokemon btns
 - [ ] loading spinner
-- [ ] modal close btn for small displays < 500px
+- [ ] modal close
+  - [ ] btn for small displays < 500px
+  - [x] keypress ESC
 
 # Checkliste
 
@@ -34,11 +36,11 @@ Bitte erfülle alle Punkte auf dieser Liste, bevor du das Projekt einreichst. So
 
 ## Große Ansicht:
 
-- [ ] Beim Klicken auf Pokemonkarte soll sich diese in groß öffnen.
+- [x] Beim Klicken auf Pokemonkarte soll sich diese in groß öffnen.
       Hintergrund leicht gräulich und beim Klicken schließt sich die Karte wieder. Wie beim Dialog Fenster. Der Hintergrund ist nicht scrollbar in der großen Ansicht.
-- [ ] Oben auf Karte sind die gleichen Infos wie bei der kleinen zu sehen (Name, Typ/en und Bild ggf. ID)
-- [ ] Unten gibt es zusätzliche Informationen. Wie du diese gestaltet und welche du hier alle anzeigen lässt, ist dir überlassen, jedoch sollten hier mindestens gewisse Werte wie z.B. hp/ attack/ defense etc. des Pokemon angezeigt werden, weiteres ist Optional.
-- [ ] Es gibt Pfeile oder ähnliches, um zwischen den Karten in der großen Ansicht zu wechseln (wie bei der Fotogalerie).
+- [x] Oben auf Karte sind die gleichen Infos wie bei der kleinen zu sehen (Name, Typ/en und Bild ggf. ID)
+- [x] Unten gibt es zusätzliche Informationen. Wie du diese gestaltet und welche du hier alle anzeigen lässt, ist dir überlassen, jedoch sollten hier mindestens gewisse Werte wie z.B. hp/ attack/ defense etc. des Pokemon angezeigt werden, weiteres ist Optional.
+- [x] Es gibt Pfeile oder ähnliches, um zwischen den Karten in der großen Ansicht zu wechseln (wie bei der Fotogalerie).
 
 ## Code
 

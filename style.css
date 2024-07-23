@@ -222,6 +222,7 @@ header span img {
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 24px;
   width: 500px;
@@ -259,12 +260,13 @@ header span img {
   justify-content: center;
   align-items: center;
   width: 80px;
+  height: 80px;
   margin-bottom: 40px;
 }
 
 .arrow-icons {
   width: 80px;
-  /* filter: invert(); */
+  height: 80px;
   cursor: pointer;
 }
 
@@ -339,7 +341,29 @@ canvas {
   .header {
     flex-direction: column;
     padding: 24px;
-    gap: 24;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 550px) {
+  .modal-card {
+    min-width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .modal-card-img {
+    max-width: 250px;
+    width: inherit;
+  }
+}
+
+@media (max-width: 500px) {
+  canvas {
+    /* width: 450px; */
+    /* height: 260px; */
+    width: 350px;
+    height: 200px;
   }
 }
 
@@ -350,5 +374,37 @@ canvas {
 
   header span img {
     width: 32px;
+  }
+
+  .body-stats-container {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 400px) {
+  .close-modal-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-card h2 {
+    font-size: 40px;
+  }
+
+  .modal-btn-container {
+    min-width: 56px;
+    height: 56px;
+  }
+
+  .arrow-icons {
+    width: 56px;
+    height: 56px;
+  }
+
+  canvas {
+    /* width: 450px; */
+    /* height: 260px; */
+    width: 300px;
+    height: 175px;
   }
 }

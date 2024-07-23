@@ -12,8 +12,8 @@
   - [x] closing btn
   - [x] change pokemon btns
 - [ ] loading spinner
-- [ ] modal close
-  - [ ] btn for small displays < 500px
+- [x] modal close
+  - [x] btn for small displays < 500px
   - [x] keypress ESC
 
 # Checkliste
@@ -28,7 +28,7 @@ Bitte erfülle alle Punkte auf dieser Liste, bevor du das Projekt einreichst. So
   - [x] Name
   - [x] Typ/en
   - [x] Bild des Pokemons
-  - [ ] Hintergrundfarbe passend zum Typ
+  - [x] Hintergrundfarbe passend zum Typ
   - [x] ID (optional)
 - [x] Es sollte einen Hover-Effekt auf der kleinen Pokemon Karte geben:
   - [x] cursor-pointer

@@ -153,7 +153,6 @@ function createFullscreenCard(id, name, img, types, height, weight, stats) {
         <canvas id="myChart" width="450" height="260"></canvas>
       </div>
       `;
-  //
 }
 
 function nextPokemon(id) {

@@ -1,16 +1,6 @@
 @font-face {
-  font-family: FiraMono-Medium;
-  src: url('./assets/fonts/Fira_Mono/FiraMono-Medium.ttf');
-}
-
-@font-face {
   font-family: Roboto-Regular;
   src: url('./assets/fonts/Roboto/Roboto-Regular.ttf');
-}
-
-@font-face {
-  font-family: Pacifico-Regular;
-  src: url('./assets/fonts/Pacifico/Pacifico-Regular.ttf');
 }
 
 * {
@@ -21,37 +11,70 @@
 body {
   max-width: 1440px;
   margin: 0 auto;
-  scrollbar-width: 12px;
-  scrollbar-color: #e8514e;
   font-family: Roboto-Regular;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 12px;
+/* LOADING SPINNER */
+
+.loading-section {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  z-index: 999;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+.loading-spinner {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  background: linear-gradient(to bottom, #e8514e 50%, white 50%);
+  border-radius: 50%;
+  border: 8px solid black;
+  animation: spin 1s linear infinite;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
+.loading-spinner::before {
+  content: '';
+  position: absolute;
+  height: 8px;
+  width: 186px;
+  background: black;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
-  border-radius: 16px;
+.loading-spinner::after {
+  content: '';
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* box-shadow: 0 0 0 4px black; */
+  box-shadow: inset 0 0 0 8px black, inset 0 0 0 10px white,
+    inset 0 0 0 12px black;
 }
 
-/* For Firefox */
-/* Track */
-html {
-  scrollbar-width: auto;
-  scrollbar-color: var(--accent) var(--bg-primary);
+/* Spin Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 h1 {
@@ -127,15 +150,8 @@ header span img {
   height: 16px;
   border: none;
   border-radius: 8px;
-  filter: invert();
   cursor: pointer;
 }
-
-/* .search-clear-btn {
-  width: 24px;
-  height: 24px;
-  filter: invert();
-} */
 
 .content {
   display: flex;
@@ -181,7 +197,6 @@ header span img {
 
 .card-types {
   padding: 6px;
-  /* border: 2px solid lightgray; */
   border-radius: 4px;
 }
 
@@ -239,7 +254,6 @@ header span img {
   width: 48px;
   height: 48px;
   cursor: pointer;
-  /* filter: invert(); */
 }
 
 .close-modal-btn:hover {
@@ -293,7 +307,11 @@ header span img {
   justify-content: space-around;
   width: 100%;
   margin-top: 32px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.body-stats {
+  font-size: 20px;
 }
 
 .stats-container {
@@ -360,10 +378,12 @@ canvas {
 
 @media (max-width: 500px) {
   canvas {
-    /* width: 450px; */
-    /* height: 260px; */
     width: 350px;
     height: 200px;
+  }
+
+  .body-stats {
+    font-size: 16px;
   }
 }
 
@@ -374,10 +394,6 @@ canvas {
 
   header span img {
     width: 32px;
-  }
-
-  .body-stats-container {
-    justify-content: space-between;
   }
 }
 
@@ -402,8 +418,6 @@ canvas {
   }
 
   canvas {
-    /* width: 450px; */
-    /* height: 260px; */
     width: 300px;
     height: 175px;
   }

@@ -1,4 +1,4 @@
-//letIABLES
+//VARIABLES
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 const pokemonData = [];
 let pokemonCount = 21;
@@ -8,11 +8,13 @@ const loadMoreBtn = document.getElementById('load-more-btn');
 const body = document.querySelector('body');
 const content = document.getElementById('content');
 const modal = document.getElementById('modal');
+const loadingSection = document.getElementById('loading-section');
 
 // FUNCTIONS
 function init() {
   searchInput.value = '';
   content.innerHTML = '';
+  openLoadingSpinner();
   loadDataFromAPI();
   controlInputClearBtn();
 }
@@ -24,7 +26,7 @@ async function loadDataFromAPI() {
     pokemonData.push(dataFromAPI);
     renderCard(dataFromAPI);
   }
-  console.log('pokemonCount: ', pokemonCount);
+  setTimeout(closeLoadingSpinner, 2000);
 }
 
 function renderCard(dataFromAPI) {
@@ -68,13 +70,27 @@ async function loadMorePokemons() {
   const currentPokemonCount = pokemonCount;
   pokemonCount += 20;
 
+  openLoadingSpinner();
+
   for (let i = currentPokemonCount; i < pokemonCount; i++) {
     let response = await fetch(BASE_URL + i);
     let dataFromAPI = await response.json();
     pokemonData.push(dataFromAPI);
     renderCard(dataFromAPI);
   }
-  console.log('pokemonCount: ', pokemonCount);
+  setTimeout(closeLoadingSpinner, 2000);
+}
+
+function openLoadingSpinner() {
+  body.style.overflow = 'hidden';
+  loadingSection.style.display = 'flex';
+}
+
+function closeLoadingSpinner() {
+  const body = document.querySelector('body');
+
+  body.style.overflow = 'visible';
+  loadingSection.style.display = 'none';
 }
 
 function openModal(id) {
@@ -297,10 +313,9 @@ function createChart(stats) {
   const margin = 16;
   const labelWidth = 50;
   const maxValue = 120;
-  // const maxValue = Math.max(...data.map((d) => d.value));
   const borderRadius = 4;
 
-  ctx.font = '14px Roboto-Regular';
+  ctx.font = '20px Roboto-Regular';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
 

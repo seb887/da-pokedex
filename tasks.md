@@ -24,7 +24,7 @@ Bitte erfülle alle Punkte auf dieser Liste, bevor du das Projekt einreichst. So
 
 - [x] Es soll eine bestimmte Anzahl an Pokemon Karten direkt gerendert werden. Am besten zwischen 20 und 40. Aktuell gibt es über 1000 Pokemon. Mindestens die ersten 151 sollen dargestellt werden.
 - [x] Unten gibt es einen Button, um weitere Pokemon zu laden.
-- [ ] Sichtbar soll auf jeder kleinen Pokemon Karte sein:
+- [x] Sichtbar soll auf jeder kleinen Pokemon Karte sein:
   - [x] Name
   - [x] Typ/en
   - [x] Bild des Pokemons
@@ -53,7 +53,7 @@ Bitte erfülle alle Punkte auf dieser Liste, bevor du das Projekt einreichst. So
 
 ## Responsive
 
-- [ ] Bis 320px Breite alles responsive ohne Scrollbalken
+- [x] Bis 320px Breite alles responsive ohne Scrollbalken
 
 ## Sonstiges
 

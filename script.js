@@ -26,6 +26,7 @@ async function loadDataFromAPI() {
     pokemonData.push(dataFromAPI);
     renderCard(dataFromAPI);
   }
+  console.log(pokemonData);
   setTimeout(closeLoadingSpinner, 2000);
 }
 
@@ -34,6 +35,18 @@ function renderCard(dataFromAPI) {
   let name = dataFromAPI.name;
   let img = dataFromAPI.sprites.other['official-artwork'].front_default;
   let types = dataFromAPI.types;
+
+  const capitalizedName =
+    name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+  content.innerHTML += createCardHTML(id, capitalizedName, img, types);
+}
+
+function renderCardFromArr(i) {
+  let id = pokemonData[i].id;
+  let name = pokemonData[i].name;
+  let img = pokemonData[i].sprites.other['official-artwork'].front_default;
+  let types = pokemonData[i].types;
 
   const capitalizedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
@@ -263,6 +276,16 @@ function controlInputClearBtn() {
   }
 }
 
+function cancelSearchPokemon() {
+  searchInput.value = '';
+  content.innerHTML = '';
+
+  for (let i = 0; i < pokemonData.length; i++) {
+    renderCardFromArr(i);
+  }
+  loadMoreBtn.style.display = 'flex';
+}
+
 // CANVAS chart
 function createChart(stats) {
   const canvas = document.getElementById('myChart');
@@ -393,7 +416,7 @@ function createChart(stats) {
 
 // EVENTS
 searchInput.addEventListener('input', searchPokemon);
-clearInputBtn.addEventListener('click', init);
+clearInputBtn.addEventListener('click', cancelSearchPokemon);
 body.onkeydown = (event) => closeModalESC(event);
 
 init();

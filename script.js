@@ -283,6 +283,7 @@ function cancelSearchPokemon() {
   for (let i = 0; i < pokemonData.length; i++) {
     renderCardFromArr(i);
   }
+  controlInputClearBtn();
   loadMoreBtn.style.display = 'flex';
 }
 
